@@ -1,24 +1,54 @@
 <html>
 
 <head>
-    <title>SEDE TodoApp</title>
+    <title>SEDE TodoApp VanillaJS-lfpm</title>
+    <!-- import stylesheet -->
     <link rel="stylesheet" type="text/css" href="./index.css">
+    <!-- To use icons from font-awesome -->
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     </link>
+
 </head>
 
 <body>
-    <!-- <div class="app-main-container">
+    <!-- <div>
         <form>
-            <input type="text" class="itemInput" placeholder="Agregar tarea...">
-            <button type="button" class="addItemBtn">Agregar</button>
+            <input type="text" class="item-input" placeholder="Agregar tarea...">
+            <button type="button" class="input-btn">Agregar</button>
         </form>
     </div> -->
 
     <div class="app-main-container">
+
+        <div class='my-modal-visible no-display'>
+            <div class='modal-inner-container'>
+                <div class='modal-header'>
+                    <span class='modal-title'>Add item to list</span>
+                </div>
+                <div class='modal-input-container'>
+                    <input type='text' class='modal-input item-input' placeholder='Type text here...' />
+                </div>
+                <div class='modal-btns-container'>
+                    <div class='modal-btns-inner-container'>
+                        <button type='button' class='btn-filled input-btn'>
+                            <p class='btn-text-filled'>
+                                Add
+                            </p>
+                        </button>
+                        <button class='cancel-btn btn-unfilled'>
+                            <p class='btn-text-unfilled '>
+                                Cancel
+                            </p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <section class="app-main-section">
+
             <div class='mcard-main-container'>
+
                 <div class='mcard-inner-container'>
-                    <CreationModal />
                     <div class='mcard-header'>
                         <h1 class='mcard-title-header'>
                             This is a technical proof
@@ -30,19 +60,33 @@
                         </p>
                     </div>
                     <div class='mcard-items-list'>
-
+                        <div class='item-main-container'>
+                            <ul class='item-list'>
+                                <li class='item-text-no-selected'>Item 1</li>
+                                <li class='item-text-no-selected'>Item 2</li>
+                                <li class='item-text-no-selected'>Item 3</li>
+                                <li class='item-text-no-selected'>Item 4</li>
+                                <li class='item-text-selected'>Item 5</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class='mcard-btns-container'>
                         <div class='mcard-first-btns'>
-                            <button class=''>
-                                0
+                            <button class='btn-unfilled'>
+                                <p class='btn-text-unfilled'>
+                                    O
+                                </p>
                             </button>
-                            <button>
-                                Delete
+                            <button class='delete-btn btn-unfilled'>
+                                <p class='btn-text-unfilled'>
+                                    Delete
+                                </p>
                             </button>
                         </div>
-                        <button>
-                            Add
+                        <button class='open-modal-btn btn-filled'>
+                            <p class='btn-text-filled'>
+                                Add
+                            </p>
                         </button>
                     </div>
                 </div>
@@ -50,9 +94,10 @@
         </section>
     </div>
 
+    </div>
+
 
     <ul class="itemList"></ul>
-
     <script src="./index.js"></script>
 </body>
 

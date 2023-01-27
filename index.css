@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-
+    display: flex;
+    flex-direction: column;
 }
 
 * {
@@ -23,14 +24,14 @@ form {
 }
 
 
-.itemInput {
+.item-input {
     padding: 10px;
     font-size: 16px;
     border-radius: 5px;
     border: none;
 }
 
-.addItemBtn {
+.input-btn {
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 5px;
@@ -70,6 +71,12 @@ form {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin-top: -50px;
+}
+
+.app-main-container {
+    background-color: rgba(209, 27, 27, 0.1) !important;
+
 }
 
 .mcard-header {
@@ -96,8 +103,6 @@ form {
     border: 1px solid rgb(211, 210, 210);
     overflow-y: auto;
 }
-
-
 
 .item-text-selected {
     background-color: #324bff;
@@ -188,4 +193,80 @@ form {
 .mcard-empty-text {
     color: #aeadad;
     font-size: 14px;
+}
+
+.item-list>li {
+    list-style-type: none
+}
+
+.my-modal-visible {
+    position: relative;
+    top: 10%;
+    left: 35vw;
+    background-color: white;
+    width: 500;
+    border-radius: 12px !important;
+    padding: 10px;
+    z-index: 100;
+}
+
+.my-modal-visible {}
+
+.my-modal-no-visible {
+    display: none;
+}
+
+.modal-main-container {
+    position: 'relative';
+    top: 500px;
+    left: 200px;
+    background-color: red;
+    width: 500px;
+    height: 350px;
+}
+
+.modal-inner-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.modal-btns-container {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.modal-btns-inner-container {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+
+.modal-input-container {
+    width: 90%;
+    height: 35px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-input {
+    height: 100%;
+    width: 100%;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    padding: 15px;
+}
+
+.modal-input:focus {
+    outline: none !important;
+    border: 1px solid #007bff;
+    box-shadow: 0 0 1px #007bff;
+}
+
+.no-display {
+    display: none !important;
+}
+
+.do-display {
+    display: flex !important;
 }
