@@ -2,6 +2,7 @@ body {
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 * {
@@ -20,7 +21,12 @@ form {
 
 .app-main-container {
     background: linear-gradient(to bottom right, #a1c4fd, #c2e9fb);
-    min-height: 100vh;
+    min-height: 100%;
+
+}
+
+.on-brightness-class {
+    filter: brightness(0.6);
 }
 
 
@@ -70,14 +76,12 @@ form {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     margin-top: -50px;
 }
 
-.app-main-container {
-    background-color: rgba(209, 27, 27, 0.1) !important;
+.app-main-container {}
 
-}
 
 .mcard-header {
     display: flex;
@@ -201,28 +205,17 @@ form {
 
 .my-modal-visible {
     position: relative;
-    top: 10%;
-    left: 35vw;
+    top: -94%;
+    left: 35%;
     background-color: white;
     width: 500;
     border-radius: 12px !important;
-    padding: 10px;
-    z-index: 100;
+    filter: none
 }
 
-.my-modal-visible {}
 
 .my-modal-no-visible {
     display: none;
-}
-
-.modal-main-container {
-    position: 'relative';
-    top: 500px;
-    left: 200px;
-    background-color: red;
-    width: 500px;
-    height: 350px;
 }
 
 .modal-inner-container {
