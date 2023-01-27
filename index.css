@@ -1,0 +1,191 @@
+body {
+    font-family: Arial, sans-serif;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.app-main-container {
+    background: linear-gradient(to bottom right, #a1c4fd, #c2e9fb);
+    min-height: 100vh;
+}
+
+
+.itemInput {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+}
+
+.addItemBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.itemList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.item:last-of-type {
+    border-bottom: none;
+}
+
+
+.mcard-main-container {
+    height: 350px;
+    width: 40%;
+    background-color: white;
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.app-main-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.mcard-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mcard-title-header {
+    color: #4d4d4d;
+}
+
+.mcard-subtitle-header {
+    text-align: center;
+    margin-top: 10px;
+    color: #4d4d4d;
+}
+
+.mcard-items-list {
+    background-color: #f7f7f7;
+    height: 150px;
+    margin-top: 20px;
+    padding: 12px;
+    border: 1px solid rgb(211, 210, 210);
+    overflow-y: auto;
+}
+
+
+
+.item-text-selected {
+    background-color: #324bff;
+    color: rgb(231, 230, 230);
+    padding: 2px;
+}
+
+.item-text-no-selected {
+    color: #4d4d4d;
+    padding: 2px;
+}
+
+.btn-filled {
+    background-color: #324bff;
+    border-width: 0px;
+    border-radius: 20px;
+    padding-right: 13px;
+    padding-left: 13px;
+    padding-top: 10px;
+    width: 110px;
+    padding-bottom: 10px;
+}
+
+.btn-unfilled {
+    border: 1px solid #324bff;
+    background-color: white;
+    border-radius: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.btn-text {
+    font-size: 16px;
+    color: #324bff
+}
+
+.btn-icon {
+    color: #324bff
+}
+
+.btn-text-filled {
+    color: #E7E6E6
+}
+
+.btn-text-unfilled {
+    color: #324bff
+}
+
+.mcard-btns-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.mcard-first-btns {
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.modal-title {
+    font-size: 20px;
+    color: #4d4d4d;
+}
+
+.modal-input {
+    width: 100%;
+    background-color: #f7f7f7;
+    margin-top: 15px !important;
+}
+
+.modal-btns-container {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.modal-btns-inner-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+
+.mcard-empty-text {
+    color: #aeadad;
+    font-size: 14px;
+}
