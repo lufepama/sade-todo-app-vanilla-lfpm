@@ -10,6 +10,7 @@ const appMainContainer = document.querySelector('.app-main-container')
 //Modal and basic operation instances
 const openModalBtn = document.querySelector('.open-modal-btn')
 const deleteBtn = document.querySelector('.delete-btn')
+const redoBtn = document.querySelector('.redo-btn')
 const modalCancelBtn = document.querySelector('.cancel-btn')
 const myModalContainer = document.querySelector('.my-modal-visible')
 
@@ -17,7 +18,9 @@ const myModalContainer = document.querySelector('.my-modal-visible')
 //Global variables
 var temporalList = []
 var temporalIdList = []
-var trackEvents = []
+var trackEvents = {}
+
+
 
 // Add item functionality
 addItemBtn.addEventListener('click', () => {
@@ -38,6 +41,18 @@ addItemBtn.addEventListener('click', () => {
     openModalBtn?.removeAttribute('disabled')
     itemList = document.querySelector('.item-list')
     elementsList = document.querySelectorAll('.item-list li')
+
+    //Step by step the data tracking logic is deduced
+    const itemData = {
+        title: itemInput.value,
+        id: idGenerated,
+    }
+    const trackData = {
+        operation: 'Add',
+        data: new Array(itemData)
+    }
+    trackEvents = trackData
+
 
     //Regenerate click event in new items added in the list
     updateItemList()
@@ -72,28 +87,75 @@ elementsList.forEach((item) => {
         const title = item.innerHTML
         const id = item.id
         const itemData = { title, id }
-        temporalList.push(itemData)
-        temporalIdList.push(id)
+        //Verify if item is in temporalList before add it into lists
+        if (!temporalIdList.includes(id)) {
+            temporalIdList.push(id)
+            temporalList.push(itemData)
+        }
     })
 })
 
 //Handle delete click action
 deleteBtn.addEventListener('click', () => {
-    console.log('list', temporalIdList)
     elementsList.forEach((item) => {
         if (temporalIdList.includes(item.id)) {
             try {
                 itemList.removeChild(item)
                 updateItemList()
             } catch (error) {
-                console.log('error', error)
+                console.log('error',)
             }
         }
     })
 
+    //Step by step the data tracking logic is deduced
+    const trackData = {
+        operation: 'Del',
+        data: temporalList
+    }
+    trackEvents = trackData
+
 })
 
+//Handle redo action
+redoBtn.addEventListener('click', () => {
 
+    if (trackEvents.operation == 'Add') {
+        elementsList.forEach(item => {
+            if (item.id === trackEvents.data[0].id) {
+                try {
+                    itemList.removeChild(item)
+                    itemList = document.querySelector('.item-list')
+                    elementsList = document.querySelectorAll('.item-list li')
+                    updateItemList()
+                    updateDeleteAction()
+                } catch (error) {
+                    console.log('')
+                }
+
+            }
+        })
+        trackEvents = {}
+        temporalIdList = []
+        temporalList = []
+
+    } else if (trackEvents.operation == 'Del') {
+        trackEvents.data.map((item) => {
+            const task = document.createElement('li');
+            task.setAttribute('id', item.id)
+            task.classList.add('item-text-no-selected');
+            task.innerHTML = item.title;
+            itemList?.appendChild(task)
+            itemList = document.querySelector('.item-list')
+            elementsList = document.querySelectorAll('.item-list li')
+            updateItemList()
+            updateDeleteAction()
+        })
+    }
+    trackEvents = {}
+    temporalIdList = []
+    temporalList = []
+})
 
 
 //--->Methods<-----
@@ -118,12 +180,15 @@ function updateItemList() {
             const title = item.innerHTML
             const id = item.id
             const itemData = { title, id }
-            temporalList.push(itemData)
-            temporalIdList.push(id)
+            if (!temporalIdList.includes(id)) {
+                temporalIdList.push(id)
+                temporalList.push(itemData)
+            }
         })
     })
 }
 
+//Allows maintain delete action even when list is updated
 function updateDeleteAction() {
     deleteBtn.addEventListener('click', () => {
         elementsList.forEach((item) => {
@@ -132,10 +197,9 @@ function updateDeleteAction() {
                     itemList.removeChild(item)
                     updateItemList()
                 } catch (error) {
-                    console.log('error', error)
+                    console.log('error',)
                 }
             }
         })
-
     })
 }
