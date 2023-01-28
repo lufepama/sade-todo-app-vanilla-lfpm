@@ -1,13 +1,13 @@
-//Input instances
+//Input and item selectors
 const itemInput = document.querySelector('.item-input');
 const addItemBtn = document.querySelector('.input-btn');
-var itemList = document.querySelector('.item-list');
-var elementsList = document.querySelectorAll('.item-list li')
+let itemList = document.querySelector('.item-list');
+let elementsList = document.querySelectorAll('.item-list li')
 
-//Main app instances
+//Main app selectors
 const appMainContainer = document.querySelector('.app-main-container')
 
-//Modal and basic operation instances
+//Modal and basic operation selectors
 const openModalBtn = document.querySelector('.open-modal-btn')
 const deleteBtn = document.querySelector('.delete-btn')
 const redoBtn = document.querySelector('.redo-btn')
@@ -16,10 +16,11 @@ const myModalContainer = document.querySelector('.my-modal-visible')
 
 
 //Global variables
-var temporalList = []
-var temporalIdList = []
-var trackEvents = {}
+let temporalList = []
+let temporalIdList = []
+let trackEvents = {}
 
+////////////////////////////////////////////////***EVENTS****/////////////////////////////////////////////////////////////
 
 
 // Add item functionality
@@ -28,21 +29,25 @@ addItemBtn.addEventListener('click', () => {
         alert('This field cannot be empty!');
         return;
     }
+    //Create dom element
     const task = document.createElement('li');
     const idGenerated = generateRandomId()
     if (idGenerated) task.setAttribute('id', idGenerated)
     task.classList.add('item-text-no-selected');
     task.innerHTML = itemInput.value;
 
+    //Append child and reconfigure attribs
     itemList.appendChild(task);
     itemInput.value = '';
     myModalContainer.classList.add('no-display')
     appMainContainer.classList.remove('on-brightness-class')
-    openModalBtn?.removeAttribute('disabled')
+    openModalBtn.removeAttribute('disabled')
+    deleteBtn.removeAttribute('disabled')
+    redoBtn.removeAttribute('disabled')
     itemList = document.querySelector('.item-list')
     elementsList = document.querySelectorAll('.item-list li')
 
-    //Step by step the data tracking logic is deduced
+    //Keep track of changes
     const itemData = {
         title: itemInput.value,
         id: idGenerated,
@@ -52,7 +57,6 @@ addItemBtn.addEventListener('click', () => {
         data: new Array(itemData)
     }
     trackEvents = trackData
-
 
     //Regenerate click event in new items added in the list
     updateItemList()
@@ -64,8 +68,11 @@ openModalBtn.addEventListener('click', () => {
     //Activate filter
     appMainContainer.classList.add('on-brightness-class')
 
+    //Update attbs
     myModalContainer.classList.remove('no-display')
     openModalBtn.setAttribute('disabled', 'disabled')
+    deleteBtn.setAttribute('disabled', 'disabled')
+    redoBtn.setAttribute('disabled', 'disabled')
 
 })
 
@@ -75,7 +82,10 @@ modalCancelBtn.addEventListener('click', () => {
     //Deactivate filter
     appMainContainer.classList.remove('on-brightness-class')
 
+    //Update attbs
     openModalBtn?.removeAttribute('disabled')
+    deleteBtn?.removeAttribute('disabled')
+    redoBtn?.removeAttribute('disabled')
     myModalContainer.classList.add('no-display')
 })
 
@@ -108,7 +118,7 @@ deleteBtn.addEventListener('click', () => {
         }
     })
 
-    //Step by step the data tracking logic is deduced
+    //Keep track of changes
     const trackData = {
         operation: 'Del',
         data: temporalList
@@ -158,10 +168,8 @@ redoBtn.addEventListener('click', () => {
 })
 
 
+////////////////////////////////////////////////***Methods****/////////////////////////////////////////////////////////////
 
-
-
-//--->Methods<-----
 
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 //Generate randomg stringid which is then used in 'li' items.
