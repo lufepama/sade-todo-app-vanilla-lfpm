@@ -158,6 +158,9 @@ redoBtn.addEventListener('click', () => {
 })
 
 
+
+
+
 //--->Methods<-----
 
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
